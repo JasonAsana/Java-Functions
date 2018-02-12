@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+<head>
+<title>simple_timer</title>
+<meta charset="UTF-8">
+</head>
+<body>
+	<button id="countdown">Begin Countdown</button>
+	<button id="time-left">Time Left</button>
+
+<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+<script type="text/javascript">
+	
+	var audio = new Audio("https://www.soundsnap.com/tags/ding#TB_inline?height=490&width=330&inlineId=login-popup;modal=false");
+
+	//**Set timeouts here**//
+	setTimeout(fiveSeconds, 1000 * 5);
+	setTimeout(tenSeconds, 1000 * 10);
+	setTimeout(timeup, 1000 * 15);
+
+	//***Set functions**//
+	function fiveSeconds(){
+		$('#time-left').html('<h2>About 10 Seconds Left!</h2>');
+		alert('10 Seconds Left');
+	}
+
+	function tenSeconds(){
+		$('#time-left').html('<h2>About 5 Seconds Left!</h2>');
+		alert('5 Seconds Left');
+	}
+	function timeup(){
+		console.log('done');
+		$('#time-left').html('<h2>Time\'s Up!</h2>');
+		alert('time is up');
+		audio.play();
+	}
+</script>
+</body>
+</html>
