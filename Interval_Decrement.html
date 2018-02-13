@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+<head>
+	<title>Stop Watch</title>
+	<meta charset="UTF-8">
+</head>
+<body>
+	<div id="show-number"></div>
+	<button id="resume">resume</button>
+	<button id="stop">stop</button>
+	<button id="reset">Reset</button>
+	<button id="lap">Lap</button>
+	
+
+<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+<script type="text/javascript">
+	
+	/**Interval Demonstration**/
+	var number=100;
+
+	//When the Start Button gets clicked, run the start function
+	$('#resume').on('click', run);
+	// When the Stop Button gets clicked, run the stop function
+	$('#stop').on('click', stop);
+	// When the Reset Button  gets clicked, run the Reset Function.
+	$('#reset').on('click', reset);
+	// When the Lap Button is clicked, run the Lap Function.
+	$('#lap').on('click', lap);
+
+	// The run function sets an interval
+	// that runs the decrement function once a second
+	// Notice how we name the interval "counter."
+	function run(){
+		counter = setInterval(decrement, 1000);
+	}
+
+	// The decrement function.
+	function decrement(){
+		// Decrease number by one.
+		number--;
+		// Show the number in the #show-number tag.
+		$('#show-number').html('<h2>' + number +  "</h2");
+		// Once number hits zero..
+		if (number==0){
+			// ...run the stop function.
+			stop();
+			// Alert the user that time is up.
+			alert('Time Up!');
+		}
+	}
+
+	// Stop the function.
+	function stop(){
+		// Clear our "counter" interval.
+		// We just pass the name of the interval to the clearInterval function.
+		clearInterval(counter);
+	}
+
+	// Execute the reset function
+	function reset(){
+		//set 
+		number = 100; 
+	}
+
+	// Write the interval on hmtl
+	function lap(){
+
+		$('#lap').prepend('<h2>' + counter + '</h2>');
+	}
+
+</script>
+</body>
+</html>
