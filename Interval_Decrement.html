@@ -16,7 +16,16 @@
 <script type="text/javascript">
 	
 	/**Interval Demonstration**/
-	var number=100;
+	var time=0;
+	var counter=0;
+
+	document.ready(convertSeconds){
+	function convertSeconds(s){
+	var min = floor(s/60);
+	var sec = s % 60; 
+	return min + ':' + sec;
+	}
+	}
 
 	//When the Start Button gets clicked, run the start function
 	$('#resume').on('click', run);
@@ -31,21 +40,21 @@
 	// that runs the decrement function once a second
 	// Notice how we name the interval "counter."
 	function run(){
-		counter = setInterval(decrement, 1000);
+		counter = setInterval(increment, 1000);
 	}
 
 	// The decrement function.
-	function decrement(){
+	function increment(){
 		// Decrease number by one.
-		number--;
+		time++;
 		// Show the number in the #show-number tag.
-		$('#show-number').html('<h2>' + number +  "</h2");
+		$('#show-number').html('<h2>' + convertSeconds(time) +  "</h2>");
 		// Once number hits zero..
-		if (number==0){
+		// if (time==0){
 			// ...run the stop function.
-			stop();
+		//	stop();
 			// Alert the user that time is up.
-			alert('Time Up!');
+		//	alert('Time Up!');
 		}
 	}
 
@@ -59,13 +68,13 @@
 	// Execute the reset function
 	function reset(){
 		//set 
-		number = 100; 
+		time = 0; 
 	}
 
-	// Write the interval on hmtl
+	// Write the interval on the #lap section.
 	function lap(){
 
-		$('#lap').prepend('<h2>' + counter + '</h2>');
+		$('#lap').prepend('<h2>' + 'Lap : ' + time + '</h2>');
 	}
 
 </script>
