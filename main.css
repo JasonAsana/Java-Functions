@@ -1,0 +1,25 @@
+body {
+	margin: 0;
+	background: black;
+}
+
+#wrapper {
+	text-align: center;
+	margin: 100px;
+}
+
+#show-time {
+	color:green;
+	font-size: 50px;
+	margin: 10px;
+}
+
+button {
+	height: 50px;
+	width: 90px;
+}
+
+#lapSection {
+	background:white;
+	line-height: 40px;
+}

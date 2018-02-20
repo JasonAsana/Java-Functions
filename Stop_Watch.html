@@ -4,6 +4,7 @@
 	<title>Stop Watch</title>
 	<meta charset="UTF-8">
 	<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="main.css">
 
 <script>
 	
@@ -12,9 +13,10 @@
 	var counter=0;
 
 	function convertSeconds(s){
+		var hrs = Math.floor(s/3600);
 		var min = Math.floor(s/60);
 		var sec = s % 60; 
-		return nf(min, 2) + ':' + nf(sec, 2);
+		return hrs + ':' + min + ':' + sec;
 		console.log('converting to seconds to time format');
 	}
 	
@@ -29,7 +31,7 @@
 	function increment(){
 		// Decrease number by one.
 		time++;
-		// Show the number in the #show-number tag.
+		// Show the time in the #show-time tag.
 		$('#show-time').html(convertSeconds(time));
 		console.log('incrementing')
 		// Once number hits zero..
@@ -53,24 +55,32 @@
 	function reset(){
 		//set 
 		convertSeconds(time = 0); 
+		$('#show-time').html(convertSeconds(time));
 		console.log('resetting time');
 	}
 
 	// Write the interval on the #lap section.
+	var lapCounter = 0;
 	function lap(){
-		$('#lap').prepend('<h2>' + 'Lap : ' + convertSeconds(time) + '</h2>');
+		
+		lapCounter++;
+		$('#lapSection').prepend('<h2>' + 'Lap ' + lapCounter + ' : ' + convertSeconds(time) + '</h2>');
 		console.log('prepending time');
 	}
+
+
 
 </script>
 </head>
 <body>
-	<p id="show-time"></p>
-	<button id="start" onclick="run()">start</button>
-	<button id="stop" onclick="stop()">stop</button>
-	<button id="reset" onclick="reset()">Reset</button>
-	<button id="lap" onclick="lap()">Lap</button>
-	
+	<div id="wrapper">
+		<div id="show-time"></div>
+		<button id="start" onclick="run()">start</button>
+		<button id="stop" onclick="stop()">stop</button>
+		<button id="reset" onclick="reset()">Reset</button>
+		<button id="lap" onclick="lap()">Lap</button>
+		<div id="lapSection"></div>
+	</div>
 
 
 </body>
