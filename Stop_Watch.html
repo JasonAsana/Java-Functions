@@ -3,59 +3,42 @@
 <head>
 	<title>Stop Watch</title>
 	<meta charset="UTF-8">
-</head>
-<body>
-	<div id="show-number"></div>
-	<button id="resume">resume</button>
-	<button id="stop">stop</button>
-	<button id="reset">Reset</button>
-	<button id="lap">Lap</button>
-	
+	<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
 
-<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
-<script type="text/javascript">
+<script>
 	
 	/**Interval Demonstration**/
 	var time=0;
 	var counter=0;
 
-	document.ready(convertSeconds){
 	function convertSeconds(s){
-	var min = floor(s/60);
-	var sec = s % 60; 
-	return min + ':' + sec;
+		var min = Math.floor(s/60);
+		var sec = s % 60; 
+		return nf(min, 2) + ':' + nf(sec, 2);
+		console.log('converting to seconds to time format');
 	}
-	}
-
-	//When the Start Button gets clicked, run the start function
-	$('#resume').on('click', run);
-	// When the Stop Button gets clicked, run the stop function
-	$('#stop').on('click', stop);
-	// When the Reset Button  gets clicked, run the Reset Function.
-	$('#reset').on('click', reset);
-	// When the Lap Button is clicked, run the Lap Function.
-	$('#lap').on('click', lap);
-
+	
 	// The run function sets an interval
 	// that runs the decrement function once a second
 	// Notice how we name the interval "counter."
 	function run(){
 		counter = setInterval(increment, 1000);
-	}
+		console.log('setting interval for incrementing');
 
 	// The decrement function.
 	function increment(){
 		// Decrease number by one.
 		time++;
 		// Show the number in the #show-number tag.
-		$('#show-number').html('<h2>' + convertSeconds(time) +  "</h2>");
+		$('#show-time').html(convertSeconds(time));
+		console.log('incrementing')
 		// Once number hits zero..
 		// if (time==0){
 			// ...run the stop function.
 		//	stop();
 			// Alert the user that time is up.
 		//	alert('Time Up!');
-		}
+	}
 	}
 
 	// Stop the function.
@@ -63,20 +46,32 @@
 		// Clear our "counter" interval.
 		// We just pass the name of the interval to the clearInterval function.
 		clearInterval(counter);
+		console.log('stop incrementing');
 	}
 
 	// Execute the reset function
 	function reset(){
 		//set 
-		time = 0; 
+		convertSeconds(time = 0); 
+		console.log('resetting time');
 	}
 
 	// Write the interval on the #lap section.
 	function lap(){
-
-		$('#lap').prepend('<h2>' + 'Lap : ' + time + '</h2>');
+		$('#lap').prepend('<h2>' + 'Lap : ' + convertSeconds(time) + '</h2>');
+		console.log('prepending time');
 	}
 
 </script>
+</head>
+<body>
+	<p id="show-time"></p>
+	<button id="start" onclick="run()">start</button>
+	<button id="stop" onclick="stop()">stop</button>
+	<button id="reset" onclick="reset()">Reset</button>
+	<button id="lap" onclick="lap()">Lap</button>
+	
+
+
 </body>
 </html>
